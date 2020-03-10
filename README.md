@@ -17,28 +17,28 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
     Note: Skip this step when using Anaconda.
 
 3. Install pyCGM2
-    - Clone the branch [development](https://github.com/pyCGM2/pyCGM2/tree/development) of pyCGM2.
+    - Clone  development branch of [pyCGM2 repository](https://github.com/pyCGM2/pyCGM2/tree/development).
     - From local folder where pyCGM2 is cloned to type `python setup.py develop`. 
 
 4. Download [Mokka](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/b-tk/Mokka-0.6.2_win64.zip)
     - Unzip Mokka and set PATH to the .exe in environment variables.
 
-5. Clone the PAF project from this repository.  
+5. Clone the PAF project from [this repository](https://github.com/qualisys/qualisys_CGM2_workflow).  
     Note: Test data are included in Data folder.
 
 # Running the workflow
 
 1. Open QTM
 2. Select the CGM2 project created in step 5
-3. Navigate to subsession.
+3. Navigate to subsession
 4. On Details pane select desired CGM2 Model
 5. Click "Start processing"
 
-This process will sucessively :
-    - generate session.xml
-    - export c3d
-    - detect static and dynamic trials according the attribute *type* of the *session.xml* node : *measurement*
-    - detect events according Zeni's algorithm 
-    - automatically open Mokka for event verification
-    - export plots as pdf (stored at subsession folder > processed)
+This process will sucessively:  
+  - Generate session.xml
+  - Export c3d files
+  - Detect static and dynamic trials according the attribute *type* of the *session.xml* node : *measurement*
+  - Detect events according Zeni's algorithm 
+  - Automatically open Mokka for event verification
+  - Export plots as pdf pages (stored at subsession folder > processed)
 
