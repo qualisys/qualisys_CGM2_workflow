@@ -12,19 +12,19 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
 			`set CONDA_FORCE_32BIT=1`
 			`conda create -n pycgm2 python=2.7`
 			`conda activate pycgm2`
-		Just remember to set CONDA_FORCE_32BIT= (set empty) if you are going to use the root environment 64bit 
+		Just remember to set `CONDA_FORCE_32BIT=` (set empty) if you are going to use the root environment 64bit.
 
-2. Set PATH to C:\Python27 and C:\Python27\Scripts
+2. Set PATH to C:\Python27 and C:\Python27\Scripts.
 	Note: Skip this step when using Anaconda.
 	
 3. Install pyCGM2
-   - Clone the branch [development](https://github.com/pyCGM2/pyCGM2/tree/development) of pyCGM2
-   - From local folder where pyCGM2 is cloned to type  `python setup.py develop` 
+   - Clone the branch [development](https://github.com/pyCGM2/pyCGM2/tree/development) of pyCGM2.
+   - From local folder where pyCGM2 is cloned to type `python setup.py develop`. 
 
 4. Download [Mokka](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/b-tk/Mokka-0.6.2_win64.zip)
-	- Unzip Mokka and set PATH to the .exe in environment variables
+	- Unzip Mokka and set PATH to the .exe in environment variables.
 	
-5. Clone the PAF project from: **CGM2 TODO!!!!!!!**
+5. Clone the PAF project from this repository.
 	Note: Test data are included in Data folder.
 
 # Running the workflow
