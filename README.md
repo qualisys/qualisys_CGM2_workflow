@@ -8,10 +8,10 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
 1. Install [Python 2.7.16 (32 bit)](https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi) .
 	Note: If you use Anaconda, download and install the [Python3 64bit](https://www.anaconda.com/distribution/) version.
 	You need to create a new environment that uses a 32bit python 2.7 using the following commands:
-		Open Anaconda Prompt and type:
-			`set CONDA_FORCE_32BIT=1`
-			`conda create -n pycgm2 python=2.7`
-			`conda activate pycgm2`
+		- Open Anaconda Prompt and type:
+			- `set CONDA_FORCE_32BIT=1`
+			- `conda create -n pycgm2 python=2.7`
+			- `conda activate pycgm2`
 		Just remember to set `CONDA_FORCE_32BIT=` (set empty) if you are going to use the root environment 64bit.
 
 2. Set PATH to C:\Python27 and C:\Python27\Scripts.
@@ -39,7 +39,7 @@ This process will sucessively :
   - generate session.xml
   - export c3d
   - detect static and dynamic trials according the attribute *type* of the *session.xml* node : *measurement*
-  - detect event according Zeni's algorithm 
+  - detect events according Zeni's algorithm 
   - automatically open Mokka for event verification
   - export plots as pdf (stored at subsession folder > processed)
   
