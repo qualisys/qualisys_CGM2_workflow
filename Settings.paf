@@ -1,0 +1,430 @@
+Project ID: PAF Salford
+Root type: Subject
+Default fields: [Creation date, Creation time]
+
+Date format: Iso
+Date separator: Dash
+
+Filename filter: \.(pdf|docx|cmz|cmo|r3w|jpg|jpeg|html)$
+
+Package Information:
+  Name: Gait
+  Version: 1.0.0
+  Required QTM version: 2019.1.4400
+
+Types:
+  Subject:
+    Patient:
+      Fields: [Patient ID, First name, Last name, Date of birth, Height, Weight, Sex]
+      Children: [Session]
+      Directory pattern: $Last name$_$First name$_$Date of birth$_$Patient ID$
+      Icon: Assets\Icons\paf_patient.ico
+
+  Session:
+    Fields: [Case ID, Diagnosis, Affected side, Gross Motor Function Classification, Functional Mobility Scale, Session date, Normative data, Leg length left, Leg length right, Knee width left, Knee width right, Ankle width left, Ankle width right, Sole delta left, Sole delta right, Shoulder offset left, Elbow width left, Wrist width left, Hand thickness left, Shoulder offset right, Elbow width right, Wrist width right, Hand thickness right, Marker diameter, Moment Projection]
+    Gait Session:
+      Directory pattern: $Session date$
+      Display order: [Patient ID, Case ID, First name, Last name, Date of birth, Weight, Height, Test condition, Comments, Session date, Creation date, Creation time, Diagnosis, Affected side, Gross Motor Function Classification, Functional Mobility Scale, Leg length left, Leg length right, Knee width left, Knee width right, Ankle width left, Ankle width right, Sole delta left, Sole delta right, Shoulder offset left, Elbow width left, Wrist width left, Hand thickness left, Shoulder offset right, Elbow width right, Wrist width right, Hand thickness right, Marker diameter, Moment Projection]
+      Fields: [Session date]
+      Children: [Subsession]
+
+  Subsession:
+    CGM2 - Full body session:
+      Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model]
+      Measurements: [Static - CGM2, Gait - CGM2]
+      Analyses: [CGM2 Processing, Generate Session XML]
+      Directory pattern: $Creation date$_Barefoot
+      Display order: [CGM2 Model]
+      Shoes: Barefoot
+      External aid: No help
+      PDF guide: ..\Documentation\CGM2_Marker_Set_Full_Body.pdf
+
+Measurements:
+  Fields:
+    Measurement length: 15
+    Maximum count: 1
+  Static - CGM2:
+    Heading: Static
+    Measurement length: 10
+    Minimum count: 1
+    Maximum count: 1
+    AIM models: CGM2_Static_Full_Body.qam
+    Measurement type: Static
+    Task: Static
+    Fields: [Left foot normalised to static trial, Right foot normalised to static trial, Head normalised to static trial]
+  Gait - CGM2:
+    Heading: Gait
+    Count: 6
+    Maximum count: 30
+    Measurement type: Dynamic
+    AIM models: CGM2_Dynamic_Full_Body.qam
+    Task: Normal gait
+    Fields: [Event mode, Forceplate1, Forceplate2, Forceplate3, Forceplate4, Forceplate5, Marker lowpass filter frequency, Marker lowpass filter order, Forceplate lowpass filter frequency, Forceplate lowpass filter order]
+
+Analyses:
+  Generate Session XML:
+    Type: Compound
+    Components: [Internal Generate Session]
+  CGM2 Processing:
+    Type: Compound
+    Components: [Internal Generate Session, Internal Run CGM2]
+
+  Internal Generate Session:
+    Type: Instantiate template
+    Export session: Yes
+    Template: Templates\Scripts\src\CGM2\sessionConfig.yaml.php
+    Output file: sessionConfig.yaml
+  Internal Run CGM2:
+    Type: External program
+    Program display name: Python
+    Export session: No
+    Export measurements: c3d
+    Arguments: [$TemplateDirectory$Scripts\src\CGM2\CGM_workflow.py, --working-directory, $WorkingDirectory$]
+
+Fields:
+  Patient ID:
+    Type: String
+    Force: Yes
+    Inherit: Connect
+  Case ID:
+    Type: String
+    Inherit: Connect
+  First name:
+    Type: String
+    Inherit: Connect
+    Force: Yes
+  Last name:
+    Type: String
+    Inherit: Connect
+    Force: Yes
+  Date of birth:
+    Type: Date
+  Session date:
+    Type: Date
+    Readonly: Yes
+  Creation date:
+    Type: Date
+    Readonly: Yes
+  Creation time:
+    Type: TimeOfDay
+    Readonly: Yes
+  Height:
+    Type: Float
+    Quantity: Length
+    Unit: Meters
+    Decimals: 2
+    Inherit: Copy
+    Max: 2.5
+    Min: 0
+  Weight:
+    Type: Float
+    Quantity: Mass
+    Unit: Kilograms
+    Decimals: 1
+    Inherit: Copy
+    Max: 300
+    Min: 1
+  Sex:
+    Type: Enum
+    Values: [unspecified, female, male]
+  Measurement type:
+    Type: Enum
+    Values: [Static, Dynamic]
+    Default: Dynamic
+    Hidden: Yes
+  Model:
+    Type: Enum
+    Values: [unspecified, Full Body, Lower Limb, Foot Markers+Sacrum, No, Foot+Sacrum+Arms, Foot]
+    Default: unspecified
+    Inherit: Copy
+    Hidden: Yes
+  CGM2 Model:
+    Type: Enum
+    Values: ["CGM1.0", "CGM1.1", "CGM2.1-HJC", "CGM2.2-IK", "CGM2.3-skinClusters", "CGM2.4-ForeFoot"]
+    Default: "CGM2.3-skinClusters"
+    Inherit: Copy
+  Event mode:
+    Type: Enum
+    Values: [Manual, Multiple forceplates, No forceplate (automatic), No forceplate (using template file), Single forceplate]
+    Default: Multiple forceplates
+  Test condition:
+    Type: String
+    Default: unspecified
+  Test operator:
+    Type: String
+    Default: unspecified
+  Marker diameter:
+    Type: Float
+    Quantity: Length
+    Unit: Millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 40
+    Min: 0
+    Default: 0.014
+  Affected side:
+    Type: Enum
+    Default: unspecified
+    Values: [unspecified, Left, Right, Both]
+    Inherit: Connect
+  Diagnosis:
+    Type: String
+    Default: unspecified
+    Inherit: Connect
+  Normative data:
+    Type: Enum
+    Values: [Adults, Children (all), Children (5-8 years), Children (9-11 years), Children (12-15 years), Children (16-18 years), Custom, Default]
+    Default: Default
+  Gross Motor Function Classification:
+    Type: Enum
+    Values: [Level I, Level II, Level III, Level IV, Level V, unspecified]
+    Default: unspecified
+  Functional Mobility Scale:
+    Type: String
+    Default: unspecified
+  Left foot normalised to static trial:
+    Type: Boolean
+    Default: Yes
+    Display: checkbox
+  Right foot normalised to static trial:
+    Type: Boolean
+    Default: Yes
+    Display: checkbox
+  Head normalised to static trial:
+    Type: Boolean
+    Default: Yes
+    Display: checkbox
+  Leg length left:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Leg length right:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Knee width left:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Knee width right:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Ankle width left:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Ankle width right:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Sole delta left:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Sole delta right:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Shoulder offset left:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Shoulder offset right:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Elbow width left:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Elbow width right:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Wrist width left:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Wrist width right:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Hand thickness left:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Hand thickness right:
+    Type: Float
+    Quantity: Length
+    Unit: millimeters
+    Decimals: 0
+    Inherit: Connect
+    Max: 2000
+    Min: 0
+  Forceplate1:
+    Type: Enum
+    Values: [Auto, Left, Right, Invalid]
+    Inherit: Connect
+  Forceplate2:
+    Type: Enum
+    Values: [Auto, Left, Right, Invalid]
+    Inherit: Connect
+  Forceplate3:
+    Type: Enum
+    Values: [Auto, Left, Right, Invalid]
+    Inherit: Connect
+  Forceplate4:
+    Type: Enum
+    Values: [Auto, Left, Right, Invalid]
+    Inherit: Connect
+  Forceplate5:
+    Type: Enum
+    Values: [Auto, Left, Right, Invalid]
+    Inherit: Connect
+  Marker lowpass filter frequency:
+    Type: Float
+    Quantity: Frequency
+    Unit: hertz
+    Decimals: 1
+    Default: 6
+  Marker lowpass filter order:
+    Type: Float
+    Decimals: 0
+    Default: 4
+  Forceplate lowpass filter frequency:
+    Type: Float
+    Quantity: Frequency
+    Unit: hertz
+    Decimals: 1
+    Default: 0
+  Forceplate lowpass filter order:
+    Type: Float
+    Decimals: 0
+    Default: 0
+  Task:
+    Type: Enum
+    Values: [unspecified, Static, Normal gait, Balance, Functional, Running, Fast gait, Slow gait, Modified gait, Internal, External, Jump, TUG, Dual task, Other]
+    Default: unspecified
+    Inherit: Copy
+  Shoes:
+    Type: Enum
+    Values: [unspecified, Barefoot, Shoes, Normalisation, Other]
+    Default: unspecified
+    Inherit: Copy
+  Prothesis_Orthosis:
+    Type: Enum
+    Values: [unspecified, No help, AFO, Shank prothesis, Thigh prothesis, Compensation, Plantar orthesis, Knee orthesis, Hip orthesis, Other]
+    Default: No help
+    Inherit: Copy
+  External aid:
+    Type: Enum
+    Values: [unspecified, No help, Walker, Crutch(es), Stick(s), Tripod, Quadripod, Tibialis, Ischios, Gluteus, Gastrocnemius, Rectus Femoris, Other]
+    Default: No help
+    Inherit: Copy
+  Personal aid:
+    Type: Enum
+    Values: [unspecified, No help, Security Person, Tactile Person]
+    Default: No help
+    Inherit: Copy
+  Video:
+    Type: Enum
+    Values: [unspecified, Video, No]
+    Default: unspecified
+    Inherit: Copy
+  Create PDF report:
+    Type: Boolean
+    Default: True
+    Hidden: Yes
+  Moment Projection:
+    Type: Enum
+    Values: [Default, Distal, Proximal, JCS]
+    Default: Default
+    Inherit: Copy
+
+Columns:
+  Default column definitions:
+    ID:
+      Width: 225
+      Fields:
+        Default: Filename
+        Patient: Patient ID
+        CGM2 - Full body session: Test condition
+    Creation:
+      Width: 65
+      Field: Creation date
+    Last name:
+      Width: 100
+      Fields:
+        Patient: Last name
+    First name:
+      Width: 100
+      Fields:
+        Patient: First name
+    DOB:
+      Width: 65
+      Fields:
+        Patient: Date of birth
+    Comments:
+      Field: Comments
+      Width: 100
