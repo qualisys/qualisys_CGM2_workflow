@@ -5,7 +5,7 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
 
 # Requirements
 
-1. Install [Python 2.7.16 (32 bit)](https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi) .  
+1. Install [Python 2.7.16 (32 bit)](https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi)   
   Note: If you use Anaconda, download and install the [Python3 64bit](https://www.anaconda.com/distribution/) version.
   For Anaconda you need to create a new environment that uses a 32bit python 2.7 using the following commands in Anaconda prompt:  
     - `set CONDA_FORCE_32BIT=1`  
@@ -13,7 +13,7 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
     - `conda activate pycgm2`  
     Just remember to set `CONDA_FORCE_32BIT=` (set empty) if you are going to use the root environment 64bit.
 
-2. Set PATH to C:\Python27 and C:\Python27\Scripts.  
+2. Set enviroment path to `C:\Python27` and `C:\Python27\Scripts`   
     Note: Skip this step when using Anaconda.
 
 3. Install pyCGM2
@@ -21,9 +21,9 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
     - From local folder where pyCGM2 is cloned to type `python setup.py develop`. 
 
 4. Download [Mokka](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/b-tk/Mokka-0.6.2_win64.zip)
-    - Unzip Mokka and set PATH to the .exe in environment variables.
+    - Unzip Mokka and set environment path to the Mokka.exe.
 
-5. Clone the PAF project from [this repository](https://github.com/qualisys/qualisys_CGM2_workflow).  
+5. Clone the PAF project from [this repository](https://github.com/qualisys/qualisys_CGM2_workflow)   
     Note: Test data are included in Data folder.
 
 # Running the workflow
