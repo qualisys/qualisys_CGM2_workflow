@@ -8,7 +8,7 @@ Date separator: Dash
 Filename filter: \.(pdf|docx|cmz|cmo|r3w|jpg|jpeg|html)$
 
 Package Information:
-  Name: Gait
+  Name: qualisys_CGM2_workflow
   Version: 1.0.0
   Required QTM version: 2019.1.4400
 
