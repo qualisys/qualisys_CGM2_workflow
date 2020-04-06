@@ -14,8 +14,6 @@ from pyCGM2 import enums
 from pyCGM2.Tools import btkTools
 from  pyCGM2.Lib import eventDetector,analysis,plot
 from pyCGM2.Report import normativeDatasets
-from pyCGM2.Signal import signal_processing
-from pyCGM2.ForcePlates import forceplates
 import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 import argparse
@@ -64,10 +62,6 @@ def main():
             logging.info("qualisys exported c3d file [%s] copied to processed folder"%(reconstructFilenameLabelled))
 
             acq=btkTools.smartReader(str(DATA_PATH+reconstructFilenameLabelled))
-
-            if btkTools.checkForcePlateExist(acq):
-                if "5" in btkTools.smartGetMetadata(acq,"FORCE_PLATFORM","TYPE"):
-                    forceplates.correctForcePlateType5(acq)
 
             acq,zeniState = eventDetector.zeni(acq)
 
@@ -224,28 +218,12 @@ def main():
         # -----------------------
 
         # marker
-        order = int(float(dynamicMeasurement.Marker_lowpass_filter_order.text))
-        fc = float(dynamicMeasurement.Marker_lowpass_filter_frequency.text)
+        order_marker = int(float(dynamicMeasurement.Marker_lowpass_filter_order.text))
+        fc_marker = float(dynamicMeasurement.Marker_lowpass_filter_frequency.text)
 
-        signal_processing.markerFiltering(acq,order=order, fc =fc)
-
-        # management of force plate type 5 and force plate filtering
-        order = int(float(dynamicMeasurement.Forceplate_lowpass_filter_order.text))
-        fc = float(dynamicMeasurement.Forceplate_lowpass_filter_frequency.text)
-
-        if order!=0 and fc!=0:
-            acq = btkTools.smartReader(DATA_PATH+reconstructFilenameLabelled)
-            if btkTools.checkForcePlateExist(acq):
-                if "5" in btkTools.smartGetMetadata(acq,"FORCE_PLATFORM","TYPE"):
-                    forceplates.correctForcePlateType5(acq)
-            signal_processing.markerFiltering(acq,order=order, fc =fc)
-        else:
-            if btkTools.checkForcePlateExist(acq):
-                if "5" in btkTools.smartGetMetadata(acq,"FORCE_PLATFORM","TYPE"):
-                    forceplates.correctForcePlateType5(acq)
-
-
-        btkTools.smartWriter(acq,DATA_PATH+reconstructFilenameLabelled)
+        # force plate
+        order_fp = int(float(dynamicMeasurement.Forceplate_lowpass_filter_order.text))
+        fc_fp = float(dynamicMeasurement.Forceplate_lowpass_filter_frequency.text)
 
 
         # event checking
@@ -264,7 +242,11 @@ def main():
             ik_flag,markerDiameter,
             pointSuffix,
             mfpa,
-            momentProjection)
+            momentProjection,
+            fc_lowPass_marker=fc_marker,
+            order_lowPass_marker=order_marker,
+            fc_lowPass_forcePlate = fc_fp,
+            order_lowPass_forcePlate = order_fp)
 
 
         outFilename = reconstructFilenameLabelled#[:-4] + "_CGM1.c3d"

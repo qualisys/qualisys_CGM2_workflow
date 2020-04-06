@@ -16,10 +16,9 @@ parser.add_argument('--working-directory', required=True, help='Working director
 
 args = parser.parse_args()
 os.chdir(args.working_directory)
-# raise Exception(str(args.working_directory) + "\n" + str(os.getcwd()))
 
-file="session.xml"
-session_xml = files.readXml(os.getcwd()+"\\",file)
+session_xml_filename="session.xml"
+session_xml = files.readXml(os.getcwd()+"\\",session_xml_filename)
 CGM2_Model = session_xml.Subsession.CGM2_Model.text
 
 logging.info("PROCESSING TYPE " + CGM2_Model)
