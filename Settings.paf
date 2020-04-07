@@ -32,7 +32,7 @@ Types:
     CGM2 - Full body session:
       Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model]
       Measurements: [Static - CGM2, Gait - CGM2]
-      Analyses: [CGM2 Processing, Generate Session XML]
+      Analyses: [CGM2 Processing]
       Directory pattern: $Creation date$_Barefoot
       Display order: [CGM2 Model]
       Shoes: Barefoot
@@ -62,18 +62,10 @@ Measurements:
     Fields: [Event mode, Forceplate1, Forceplate2, Forceplate3, Forceplate4, Forceplate5, Marker lowpass filter frequency, Marker lowpass filter order, Forceplate lowpass filter frequency, Forceplate lowpass filter order]
 
 Analyses:
-  Generate Session XML:
-    Type: Compound
-    Components: [Internal Generate Session]
   CGM2 Processing:
     Type: Compound
-    Components: [Internal Generate Session, Internal Run CGM2]
+    Components: [ Internal Run CGM2]
 
-  Internal Generate Session:
-    Type: Instantiate template
-    Export session: Yes
-    Template: Templates\Scripts\src\CGM2\sessionConfig.yaml.php
-    Output file: sessionConfig.yaml
   Internal Run CGM2:
     Type: External program
     Program display name: Python
