@@ -1,2 +1,6 @@
 *.pyc 
 __pycache__/
+/Data/
+/Calibrations/
+/AIM models/Backups/
+/Messages/
