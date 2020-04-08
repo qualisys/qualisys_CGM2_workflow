@@ -349,11 +349,11 @@ Fields:
     Quantity: Frequency
     Unit: hertz
     Decimals: 1
-    Default: 0
+    Default: 25
   Forceplate lowpass filter order:
     Type: Float
     Decimals: 0
-    Default: 0
+    Default: 4
   Task:
     Type: Enum
     Values: [unspecified, Static, Normal gait, Balance, Functional, Running, Fast gait, Slow gait, Modified gait, Internal, External, Jump, TUG, Dual task, Other]
