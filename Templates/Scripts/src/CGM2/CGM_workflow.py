@@ -1,11 +1,11 @@
 import os
 import sys
-import CGM1_workflow
-import CGM11_workflow
-import CGM21_workflow
-import CGM22_workflow
-import CGM23_workflow
-import CGM24_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM1_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM11_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM21_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM22_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM23_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM24_workflow
 
 from pyCGM2.Utils import files
 import logging
