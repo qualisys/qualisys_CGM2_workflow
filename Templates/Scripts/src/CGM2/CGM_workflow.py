@@ -23,17 +23,17 @@ CGM2_Model = session_xml.Subsession.CGM2_Model.text
 
 logging.info("PROCESSING TYPE " + CGM2_Model)
 if CGM2_Model == "CGM1.0":
-    CGM1_workflow.main()
+    CGM1_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM1.1":
-    CGM11_workflow.main()
+    CGM11_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.1-HJC":
-    CGM21_workflow.main()
+    CGM21_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.2-IK":
-    CGM22_workflow.main()
+    CGM22_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.3-skinClusters":
-    CGM23_workflow.main()
+    CGM23_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.4-ForeFoot":
-    CGM24_workflow.main()
+    CGM24_workflow.main(session_xml_filename)
 else:
     raise Exception(
         "The pyCMG processing type is not implemented, you selected %s" % CGM2_Model)
