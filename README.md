@@ -3,6 +3,11 @@
 This document provides instructions on installation of Qualisys CGM2 workflow using Project Automation Framework (PAF).
 For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm2.github.io/) .
 
+# Requirements
+
+- QTM version 2.17 or 2018.1 and all later versions
+- No other licence required 
+
 # Installation
 
 1. Install [Python 2.7.16 (32 bit)](https://www.python.org/ftp/python/2.7.16/python-2.7.16.msi)   
