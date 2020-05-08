@@ -1,11 +1,11 @@
 import os
 import sys
-import CGM1_workflow
-import CGM11_workflow
-import CGM21_workflow
-import CGM22_workflow
-import CGM23_workflow
-import CGM24_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM1_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM11_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM21_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM22_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM23_workflow
+from pyCGM2.Apps.QtmApps.CGMi import CGM24_workflow
 
 from pyCGM2.Utils import files
 import logging
@@ -23,17 +23,17 @@ CGM2_Model = session_xml.Subsession.CGM2_Model.text
 
 logging.info("PROCESSING TYPE " + CGM2_Model)
 if CGM2_Model == "CGM1.0":
-    CGM1_workflow.main()
+    CGM1_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM1.1":
-    CGM11_workflow.main()
+    CGM11_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.1-HJC":
-    CGM21_workflow.main()
+    CGM21_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.2-IK":
-    CGM22_workflow.main()
+    CGM22_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.3-skinClusters":
-    CGM23_workflow.main()
+    CGM23_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.4-ForeFoot":
-    CGM24_workflow.main()
+    CGM24_workflow.main(session_xml_filename)
 else:
     raise Exception(
         "The pyCMG processing type is not implemented, you selected %s" % CGM2_Model)
