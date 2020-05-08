@@ -22,7 +22,7 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
 
 3. Install pyCGM2:
     - Clone  development branch of [pyCGM2 repository](https://github.com/pyCGM2/pyCGM2/tree/development).
-    - Open command prompt at the local folder where pyCGM2 is cloned to and type `python setup.py develop`. 
+    - Open command prompt at the local folder where pyCGM2 is cloned to and type `pip install - e .`. (when using Anaconda open AnacondaPromt and make sure the pycgm2 environment is active `conda activate pycgm2`)
 
 4. Download [Mokka](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/b-tk/Mokka-0.6.2_win64.zip):
     - Unzip Mokka and add location of Mokka.exe to "Path" environment variable.
@@ -34,7 +34,7 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
 
 1. Open QTM
 2. Open the CGM2 project created in step 5 above
-3. Go to Tools > Project options > Folder options and set the Python path to `C:\Python27\python.exe`
+3. Go to Tools > Project options > Folder options and set the Python path to `C:\Python27\python.exe` (select the pycgm2 environments python executable when using Anaconda)
 4. Navigate to subsession in the Project data tree
 5. On Details pane select desired CGM2 Model
 6. Click "Start processing"
