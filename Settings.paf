@@ -63,10 +63,6 @@ Measurements:
 
 Analyses:
   CGM2 Processing:
-    Type: Compound
-    Components: [ Internal Run CGM2]
-
-  Internal Run CGM2:
     Type: External program
     Program display name: Python
     Export session: No
