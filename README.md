@@ -35,7 +35,7 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
 5. Clone the PAF project from [this repository](https://github.com/qualisys/qualisys_CGM2_workflow)   
     Note: Test data are included in Data folder.
 
-# Running the workflow
+# Running the workflow from QTM
 
 1. Open QTM
 2. Open the CGM2 project created in step 5 above
@@ -52,3 +52,9 @@ This process will sucessively:
   - Automatically open Mokka for event verification
   - Export plots as pdf pages (stored at subsession folder > processed)
 
+# Running the workflow from the command line
+
+1. First run the workflow from QTM to make sure c3d files and session.xml have been exported.
+2. Open Windows command prompt and us 'cd' to go to [QTM project folder]\Templates\Scripts\src\CGM2
+3. Start processing: `python CGM_workflow.py --working-directory "..."` (Replace ... with the complete path to the working folder in QTM, i.e. the folder where .qtm and .c3d files are located.).
+4. The resulting PDF report will be stored in a subfolder of the working folder.
