@@ -27,7 +27,7 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
 
 3. Install pyCGM2:
     - Clone  development branch of [pyCGM2 repository](https://github.com/pyCGM2/pyCGM2/tree/development).
-    - Open command prompt at the local folder where pyCGM2 is cloned to and type `pip install - e .`. (when using Anaconda open AnacondaPromt and make sure the pycgm2 environment is active `conda activate pycgm2`)
+    - Open command prompt at the local folder where pyCGM2 is cloned to and type `pip install -e .` (when using Anaconda open AnacondaPromt and make sure the pycgm2 environment is active `conda activate pycgm2`).
 
 4. Download [Mokka](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/b-tk/Mokka-0.6.2_win64.zip):
     - Unzip Mokka and add location of Mokka.exe to "Path" environment variable.
