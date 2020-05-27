@@ -8,8 +8,14 @@ from pyCGM2.Apps.QtmApps.CGMi import CGM23_workflow
 from pyCGM2.Apps.QtmApps.CGMi import CGM24_workflow
 
 from pyCGM2.Utils import files
+from pathlib2 import Path
 import logging
 import argparse
+
+def delete_c3d_files_in(folder_path):
+    folder_path = Path(folder_path)
+    for c3d_file_path in folder_path.glob("*.c3d"):
+        c3d_file_path.unlink()
 
 parser = argparse.ArgumentParser(description='CGM workflow')
 parser.add_argument('--working-directory', required=True, help='Working directory with qtm exported c3d files')
@@ -20,6 +26,8 @@ os.chdir(args.working_directory)
 session_xml_filename="session.xml"
 session_xml = files.readXml(os.getcwd()+"\\",session_xml_filename)
 CGM2_Model = session_xml.Subsession.CGM2_Model.text
+
+delete_c3d_files_in(Path(args.working_directory, "processed"))
 
 logging.info("PROCESSING TYPE " + CGM2_Model)
 if CGM2_Model == "CGM1.0":
