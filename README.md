@@ -21,7 +21,7 @@ There are two ways to install it. Prefered method is using Anaconda 2 environmen
     Just remember to set `CONDA_FORCE_32BIT=` (set empty) if you want to return to the root 64bit environment.
 
 3. Install pyCGM2:
-    - Clone  development branch of [pyCGM2 repository](https://github.com/pyCGM2/pyCGM2/tree/development).
+    - Clone [pyCGM2 repository](https://github.com/pyCGM2/pyCGM2/tree/Master), tested with [version(3.3.0)](https://github.com/pyCGM2/pyCGM2/releases/tag/version(3.3.0)).
     - Open Anaconda prompt at the local folder where pyCGM2 is cloned to and type `pip install -e .` Make sure the pycgm2 environment is active. If not, activate it by `activate pycgm2` in Anaconda prompt at the local folder where pyCGM2 is cloned to.
 
 ## Python
@@ -34,7 +34,7 @@ There are two ways to install it. Prefered method is using Anaconda 2 environmen
     - Add `C:\Python27` and `C:\Python27\Scripts` and click OK on all dialogs.  
 
 3. Install pyCGM2:
-    - Clone  development branch of [pyCGM2 repository](https://github.com/pyCGM2/pyCGM2/tree/development).
+    - Clone [pyCGM2 repository](https://github.com/pyCGM2/pyCGM2/tree/Master), tested with [version(3.3.0)](https://github.com/pyCGM2/pyCGM2/releases/tag/version(3.3.0)).
     - Open command prompt at the local folder where pyCGM2 is cloned to and type `pip install -e .` 
 
 ## Common steps
