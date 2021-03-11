@@ -1,3 +1,9 @@
+
+This github folder is a fork of  [qualisys_CGM2_workflow ](https://github.com/qualisys/qualisys_CGM2_workflow).
+
+The code has been tested with python3.7 and the python3 version of
+
+
 # Introduction
 
 This document provides instructions on installation of Qualisys CGM2 workflow using Project Automation Framework (PAF).
@@ -6,13 +12,15 @@ For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm
 # Requirements
 
 - QTM version 2.17 or 2018.1 and all later versions
-- No other licence required 
+- No other licence required
+- python 3.7
+- pyCGM2 ( version python3.7 )
 
-# Installation
+<!-- # Installation
 There are two ways to install it. Prefered method is using Anaconda 2 environment. Other option is to install Python separately.
 
 ## Anaconda
-1. Download and install the [Python3 64bit](https://www.anaconda.com/distribution/) version of Anaconda. 
+1. Download and install the [Python3 64bit](https://www.anaconda.com/distribution/) version of Anaconda.
 
 2. Create a new environment that uses a 32bit Python 2.7 using the following commands in Anaconda prompt:  
     - `set CONDA_FORCE_32BIT=1`  
@@ -35,7 +43,7 @@ There are two ways to install it. Prefered method is using Anaconda 2 environmen
 
 3. Install pyCGM2:
     - Clone [pyCGM2 repository](https://github.com/pyCGM2/pyCGM2/tree/Master), tested with [version(3.3.0)](https://github.com/pyCGM2/pyCGM2/releases/tag/version(3.3.0)).
-    - Open command prompt at the local folder where pyCGM2 is cloned to and type `pip install -e .` 
+    - Open command prompt at the local folder where pyCGM2 is cloned to and type `pip install -e .`
 
 ## Common steps
 4. Download [Mokka](https://storage.googleapis.com/google-code-archive-downloads/v2/code.google.com/b-tk/Mokka-0.6.2_win64.zip):
@@ -50,7 +58,7 @@ There are two ways to install it. Prefered method is using Anaconda 2 environmen
 
 1. Open QTM
 2. Open the CGM2 project created in step 5 above
-3. Go to Tools > Project options > Folder options and set the path to Python. If using Anaconda select the pycgm2 environments python executable when using Anaconda (type `where python` in Anaconda prompt to locate correct Python.exe). If using stand alone python it is typically at `C:\Python27\python.exe`. 
+3. Go to Tools > Project options > Folder options and set the path to Python. If using Anaconda select the pycgm2 environments python executable when using Anaconda (type `where python` in Anaconda prompt to locate correct Python.exe). If using stand alone python it is typically at `C:\Python27\python.exe`.
 4. Navigate to subsession in the Project data tree
 5. On Details pane select desired CGM2 Model
 6. Click "Start processing"
@@ -59,11 +67,11 @@ This process will sucessively:
   - Generate session.xml
   - Export c3d files
   - Detect static and dynamic trials according the attribute *type* of the *session.xml* node : *measurement*
-  - Detect events according Zeni's algorithm 
+  - Detect events according Zeni's algorithm
   - Automatically open Mokka for event verification
   - Export plots as pdf pages (stored at subsession folder > processed)
 
-# Running the workflow from the command line
+# Running the workflow from the command line -->
 
 1. First run the workflow from QTM to make sure c3d files and session.xml have been exported.
 2. Open Anaconda prompt (or Windows command prompt if using standalone python) and use 'cd' to go to [QTM project folder]\Templates\Scripts\src\CGM2
