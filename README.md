@@ -73,7 +73,7 @@ This process will sucessively:
 
 # Running the workflow from the command line -->
 
-1. First run the workflow from QTM to make sure c3d files and session.xml have been exported.
+<!-- 1. First run the workflow from QTM to make sure c3d files and session.xml have been exported.
 2. Open Anaconda prompt (or Windows command prompt if using standalone python) and use 'cd' to go to [QTM project folder]\Templates\Scripts\src\CGM2
 3. Start processing: `python CGM_workflow.py --working-directory "..."` (Replace ... with the complete path to the working folder in QTM, i.e. the folder where .qtm and .c3d files are located.).
-4. The resulting PDF report will be stored in a subfolder of the working folder.
+4. The resulting PDF report will be stored in a subfolder of the working folder. -->
