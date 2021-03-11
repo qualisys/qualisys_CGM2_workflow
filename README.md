@@ -1,13 +1,7 @@
 
 This github folder is a fork of  [qualisys_CGM2_workflow ](https://github.com/qualisys/qualisys_CGM2_workflow).
 
-The code has been tested with python3.7 and the python3 version of
-
-
-# Introduction
-
-This document provides instructions on installation of Qualisys CGM2 workflow using Project Automation Framework (PAF).
-For details about CGM2 please refer to [https://pycgm2.github.io/](https://pycgm2.github.io/) .
+The code has been tested with python3.7-64bits
 
 # Requirements
 
