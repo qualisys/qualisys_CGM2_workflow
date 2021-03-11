@@ -1,11 +1,5 @@
 import os
 import sys
-from pyCGM2.Apps.QtmApps.CGMi import CGM1_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM11_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM21_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM22_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM23_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM24_workflow
 
 from pyCGM2.Utils import files
 from pathlib2 import Path
@@ -31,16 +25,22 @@ delete_c3d_files_in(Path(args.working_directory, "processed"))
 
 logging.info("PROCESSING TYPE " + CGM2_Model)
 if CGM2_Model == "CGM1.0":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM1_workflow
     CGM1_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM1.1":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM11_workflow
     CGM11_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.1-HJC":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM21_workflow
     CGM21_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.2-IK":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM22_workflow
     CGM22_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.3-skinClusters":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM23_workflow
     CGM23_workflow.main(session_xml_filename)
 elif CGM2_Model == "CGM2.4-ForeFoot":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM24_workflow
     CGM24_workflow.main(session_xml_filename)
 else:
     raise Exception(
