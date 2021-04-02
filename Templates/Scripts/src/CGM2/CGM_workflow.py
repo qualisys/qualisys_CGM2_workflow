@@ -42,6 +42,12 @@ elif CGM2_Model == "CGM2.3-skinClusters":
 elif CGM2_Model == "CGM2.4-ForeFoot":
     from pyCGM2.Apps.QtmApps.CGMi import CGM24_workflow
     CGM24_workflow.main(session_xml_filename)
+elif CGM2_Model == "CGM2.5-UpperLimb":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM25_workflow
+    CGM25_workflow.main(session_xml_filename)
+elif CGM2_Model == "CGM2.6-Knee Calibration":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM26_workflow
+    CGM26_workflow.main(session_xml_filename)
 else:
     raise Exception(
         "The pyCMG processing type is not implemented, you selected %s" % CGM2_Model)
