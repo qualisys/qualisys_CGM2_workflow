@@ -30,7 +30,7 @@ Types:
 
   Subsession:
     CGM2 - Full body session:
-      Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model]
+      Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model,Check Events In Mokka, Anomaly Exception]
       Measurements: [Static - CGM2, Left Knee Calibration - CGM2, Right Knee Calibration - CGM2, Gait - CGM2]
       Analyses: [Generate Session,CGM2 Processing]
       Directory pattern: $Creation date$_Barefoot
@@ -408,6 +408,14 @@ Fields:
     Type: Boolean
     Default: True
     Hidden: Yes
+  Check Events In Mokka:
+    Type: Boolean
+    Default: True
+    Hidden: Yes
+  Anomaly Exception:
+    Type: Boolean
+    Default: True
+    Hidden: Yes
   Moment Projection:
     Type: Enum
     Values: [Default, Distal, Proximal, JCS]
@@ -424,7 +432,7 @@ Fields:
     Default: 1e-5
   First frame to process:
     Type: String
-    Default: 
+    Default:
   Last frame to process:
       Type: String
       Default:
