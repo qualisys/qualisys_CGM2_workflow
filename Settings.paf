@@ -76,7 +76,7 @@ Measurements:
     Measurement type: Dynamic
     AIM models: CGM2_Dynamic_Full_Body.qam
     Task: Normal gait
-    Fields: [Event mode, Forceplate1, Forceplate2, Forceplate3, Forceplate4, Forceplate5, Marker lowpass filter frequency, Marker lowpass filter order, Forceplate lowpass filter frequency, Forceplate lowpass filter order]
+    Fields: [Event mode, Forceplate1, Forceplate2, Forceplate3, Forceplate4, Forceplate5, Marker lowpass filter frequency, Marker lowpass filter order, Forceplate lowpass filter frequency, Forceplate lowpass filter order, IkAccuracy]
 
 
 Analyses:
@@ -418,7 +418,10 @@ Fields:
     Values: [Calibration2Dof, SARA]
     Default: Calibration2Dof
     Inherit: Connect
-
+  IkAccuracy:
+    Type: Float
+    Decimals: 10
+    Default: 1e-5
 Columns:
   Default column definitions:
     ID:
