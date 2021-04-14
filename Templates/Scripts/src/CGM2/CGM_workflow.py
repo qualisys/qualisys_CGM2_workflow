@@ -1,5 +1,8 @@
+# -*- coding: utf-8 -*-
 import os
 import sys
+
+#python CGM_workflow.py --working-directory "C:\Users\fleboeuf\Documents\Programmation\pyCGM2\qualisys_CGM2_workflow\Data\Doe_John_2020-03-10_01\2020-03-10\2020-03-10_Barefoot"
 
 from pyCGM2.Utils import files
 from pathlib2 import Path
@@ -55,3 +58,5 @@ elif CGM2_Model == "CGM2.6-Knee Calibration":
 else:
     raise Exception(
         "The pyCMG processing type is not implemented, you selected %s" % CGM2_Model)
+
+os.startfile( args.working_directory+"\\pyCGM2-QTM-Workflow.log")
