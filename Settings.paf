@@ -30,11 +30,11 @@ Types:
 
   Subsession:
     CGM2 - Full body session:
-      Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model]
+      Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model, Solver accuracy]
       Measurements: [Static - CGM2, Gait - CGM2]
       Analyses: [CGM2 Processing]
       Directory pattern: $Creation date$_Barefoot
-      Display order: [CGM2 Model]
+      Display order: [CGM2 Model, Solver accuracy]
       Shoes: Barefoot
       External aid: No help
       PDF guide: ..\Documentation\CGM2_Marker_Set_Full_Body.pdf
@@ -131,6 +131,12 @@ Fields:
     Values: ["CGM1.0", "CGM1.1", "CGM2.1-HJC", "CGM2.2-IK", "CGM2.3-skinClusters", "CGM2.4-ForeFoot"]
     Default: "CGM2.3-skinClusters"
     Inherit: Copy
+  Solver accuracy:
+    Type: Float
+    Max: 0.001
+    Min: 0.000000000001
+    Default: 0.00001
+    Decimals: 12
   Event mode:
     Type: Enum
     Values: [Manual, Multiple forceplates, No forceplate (automatic), No forceplate (using template file), Single forceplate]
