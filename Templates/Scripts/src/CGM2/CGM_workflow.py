@@ -1,11 +1,8 @@
+# -*- coding: utf-8 -*-
 import os
 import sys
-from pyCGM2.Apps.QtmApps.CGMi import CGM1_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM11_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM21_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM22_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM23_workflow
-from pyCGM2.Apps.QtmApps.CGMi import CGM24_workflow
+
+#python CGM_workflow.py --working-directory "C:\Users\fleboeuf\Documents\Programmation\pyCGM2\qualisys_CGM2_workflow\Data\Doe_John_2020-03-10_01\2020-03-10\2020-03-10_Barefoot"
 
 from pyCGM2.Utils import files
 from pathlib2 import Path
@@ -27,21 +24,39 @@ session_xml_filename="session.xml"
 session_xml = files.readXml(os.getcwd()+"\\",session_xml_filename)
 CGM2_Model = session_xml.Subsession.CGM2_Model.text
 
+checkEventsInMokka = bool(session_xml.Subsession.Check_Events_In_Mokka.text)
+createPDFReport = bool(session_xml.Subsession.Create_PDF_report.text)
+anomalyException = bool(session_xml.Subsession.Anomaly_Exception.text)
+
 delete_c3d_files_in(Path(args.working_directory, "processed"))
 
 logging.info("PROCESSING TYPE " + CGM2_Model)
 if CGM2_Model == "CGM1.0":
-    CGM1_workflow.main(session_xml_filename)
+    from pyCGM2.Apps.QtmApps.CGMi import CGM1_workflow
+    CGM1_workflow.main(session_xml_filename,createPDFReport=createPDFReport,checkEventsInMokka=checkEventsInMokka,anomalyException=anomalyException)
 elif CGM2_Model == "CGM1.1":
-    CGM11_workflow.main(session_xml_filename)
+    from pyCGM2.Apps.QtmApps.CGMi import CGM11_workflow
+    CGM11_workflow.main(session_xml_filename,createPDFReport=createPDFReport,checkEventsInMokka=checkEventsInMokka,anomalyException=anomalyException)
 elif CGM2_Model == "CGM2.1-HJC":
-    CGM21_workflow.main(session_xml_filename)
+    from pyCGM2.Apps.QtmApps.CGMi import CGM21_workflow
+    CGM21_workflow.main(session_xml_filename,createPDFReport=createPDFReport,checkEventsInMokka=checkEventsInMokka,anomalyException=anomalyException)
 elif CGM2_Model == "CGM2.2-IK":
-    CGM22_workflow.main(session_xml_filename)
+    from pyCGM2.Apps.QtmApps.CGMi import CGM22_workflow
+    CGM22_workflow.main(session_xml_filename,createPDFReport=createPDFReport,checkEventsInMokka=checkEventsInMokka,anomalyException=anomalyException)
 elif CGM2_Model == "CGM2.3-skinClusters":
-    CGM23_workflow.main(session_xml_filename)
+    from pyCGM2.Apps.QtmApps.CGMi import CGM23_workflow
+    CGM23_workflow.main(session_xml_filename,createPDFReport=createPDFReport,checkEventsInMokka=checkEventsInMokka,anomalyException=anomalyException)
 elif CGM2_Model == "CGM2.4-ForeFoot":
-    CGM24_workflow.main(session_xml_filename)
+    from pyCGM2.Apps.QtmApps.CGMi import CGM24_workflow
+    CGM24_workflow.main(session_xml_filename,createPDFReport=createPDFReport,checkEventsInMokka=checkEventsInMokka,anomalyException=anomalyException)
+elif CGM2_Model == "CGM2.5-UpperLimb":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM25_workflow
+    CGM25_workflow.main(session_xml_filename,createPDFReport=createPDFReport,checkEventsInMokka=checkEventsInMokka,anomalyException=anomalyException)
+elif CGM2_Model == "CGM2.6-Knee Calibration":
+    from pyCGM2.Apps.QtmApps.CGMi import CGM26_workflow
+    CGM26_workflow.main(session_xml_filename,createPDFReport=createPDFReport,checkEventsInMokka=checkEventsInMokka,anomalyException=anomalyException)
 else:
     raise Exception(
         "The pyCMG processing type is not implemented, you selected %s" % CGM2_Model)
+
+os.startfile( args.working_directory+"\\pyCGM2-QTM-Workflow.log")
