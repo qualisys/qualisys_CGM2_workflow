@@ -30,9 +30,9 @@ Types:
 
   Subsession:
     CGM2 - Full body session:
-      Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model, Solver accuracy]
-      Measurements: [Static - CGM2, Gait - CGM2]
-      Analyses: [CGM2 Processing]
+      Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model,Check Events In Mokka, Anomaly Exception]
+      Measurements: [Static - CGM2, Left Knee Calibration - CGM2, Right Knee Calibration - CGM2, Gait - CGM2]
+      Analyses: [Generate Session,CGM2 Processing]
       Directory pattern: $Creation date$_Barefoot
       Display order: [CGM2 Model, Solver accuracy]
       Shoes: Barefoot
@@ -52,6 +52,23 @@ Measurements:
     Measurement type: Static
     Task: Static
     Fields: [Left foot normalised to static trial, Right foot normalised to static trial, Head normalised to static trial]
+
+  Left Knee Calibration - CGM2:
+    Heading: Left Knee Calibration
+    Count: 1
+    Measurement type: Dynamic
+    AIM models: CGM2_Dynamic_Full_Body.qam
+    Task: Functional knee calibration
+    Fields: [ Knee functional calibration method, Marker lowpass filter frequency, Marker lowpass filter order]
+
+  Right Knee Calibration - CGM2:
+    Heading: Right Knee Calibration
+    Count: 1
+    Measurement type: Dynamic
+    AIM models: CGM2_Dynamic_Full_Body.qam
+    Task: Functional knee calibration
+    Fields: [ Knee functional calibration method, Marker lowpass filter frequency, Marker lowpass filter order]
+
   Gait - CGM2:
     Heading: Gait
     Count: 6
@@ -59,9 +76,16 @@ Measurements:
     Measurement type: Dynamic
     AIM models: CGM2_Dynamic_Full_Body.qam
     Task: Normal gait
-    Fields: [Event mode, Forceplate1, Forceplate2, Forceplate3, Forceplate4, Forceplate5, Marker lowpass filter frequency, Marker lowpass filter order, Forceplate lowpass filter frequency, Forceplate lowpass filter order]
+    Fields: [Event mode, Forceplate1, Forceplate2, Forceplate3, Forceplate4, Forceplate5, Marker lowpass filter frequency, Marker lowpass filter order, Forceplate lowpass filter frequency, Forceplate lowpass filter order, IkAccuracy, First frame to process, Last frame to process]
+
 
 Analyses:
+  Generate Session:
+    Type: Instantiate template
+    Export session: Yes
+    Export measurements: c3d
+    Template: Templates\template_xml.php
+    Output file: sessionConfig.yaml
   CGM2 Processing:
     Type: External program
     Program display name: Python
@@ -128,7 +152,7 @@ Fields:
     Hidden: Yes
   CGM2 Model:
     Type: Enum
-    Values: ["CGM1.0", "CGM1.1", "CGM2.1-HJC", "CGM2.2-IK", "CGM2.3-skinClusters", "CGM2.4-ForeFoot"]
+    Values: ["CGM1.0", "CGM1.1", "CGM2.1-HJC", "CGM2.2-IK", "CGM2.3-skinClusters", "CGM2.4-ForeFoot", "CGM2.5-UpperLimb", "CGM2.6-Knee Calibration"]
     Default: "CGM2.3-skinClusters"
     Inherit: Copy
   Solver accuracy:
@@ -358,7 +382,7 @@ Fields:
     Default: 4
   Task:
     Type: Enum
-    Values: [unspecified, Static, Normal gait, Balance, Functional, Running, Fast gait, Slow gait, Modified gait, Internal, External, Jump, TUG, Dual task, Other]
+    Values: [unspecified, Static, Functional knee calibration, Normal gait, Balance, Functional, Running, Fast gait, Slow gait, Modified gait, Internal, External, Jump, TUG, Dual task, Other]
     Default: unspecified
     Inherit: Copy
   Shoes:
@@ -390,11 +414,35 @@ Fields:
     Type: Boolean
     Default: True
     Hidden: Yes
+  Check Events In Mokka:
+    Type: Boolean
+    Default: True
+    Hidden: Yes
+  Anomaly Exception:
+    Type: Boolean
+    Default: True
+    Hidden: Yes
   Moment Projection:
     Type: Enum
     Values: [Default, Distal, Proximal, JCS]
     Default: Default
     Inherit: Copy
+  Knee functional calibration method:
+    Type: Enum
+    Values: [Calibration2Dof, SARA]
+    Default: Calibration2Dof
+    Inherit: Connect
+  IkAccuracy:
+    Type: Float
+    Decimals: 10
+    Default: 1e-5
+  First frame to process:
+    Type: String
+    Default:
+  Last frame to process:
+      Type: String
+      Default:
+
 
 Columns:
   Default column definitions:

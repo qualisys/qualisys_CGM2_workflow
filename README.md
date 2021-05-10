@@ -1,4 +1,3 @@
-# Introduction
 
 This repository provides Qualisys CGM2 workflow using Project Automation Framework (PAF). For details about CGM2 please refer to [https://pycgm2.netlify.app/](https://pycgm2.netlify.app/).
 
