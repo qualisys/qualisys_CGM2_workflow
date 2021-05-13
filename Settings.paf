@@ -30,11 +30,11 @@ Types:
 
   Subsession:
     CGM2 - Full body session:
-      Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model,Check Events In Mokka, Anomaly Exception]
+      Fields: [Test condition, Test operator, Prothesis_Orthosis, Personal aid, Create PDF report, CGM2 Model, Check Events In Mokka, Anomaly Exception]
       Measurements: [Static - CGM2, Left Knee Calibration - CGM2, Right Knee Calibration - CGM2, Gait - CGM2]
-      Analyses: [Generate Session,CGM2 Processing]
+      Analyses: [Generate Session, CGM10 Processing, CGM11 Processing, CGM21 Processing, CGM22 Processing, CGM23 Processing, CGM24 Processing, CGM25 Processing, CGM26 Processing]
       Directory pattern: $Creation date$_Barefoot
-      Display order: [CGM2 Model, Solver accuracy]
+      Display order: [CGM2 Model]
       Shoes: Barefoot
       External aid: No help
       PDF guide: ..\Documentation\CGM2_Marker_Set_Full_Body.pdf
@@ -86,13 +86,77 @@ Analyses:
     Export measurements: c3d
     Template: Templates\template_xml.php
     Output file: sessionConfig.yaml
+  CGM10 Processing:
+    Type: Compound
+    Components: [Generate Session, Internal CGM1 processing]
+  CGM11 Processing:
+    Type: Compound
+    Components: [Generate Session, Internal CGM11 processing]
+  CGM21 Processing:
+    Type: Compound
+    Components: [Generate Session, Internal CGM21 processing]
+  CGM22 Processing:
+    Type: Compound
+    Components: [Generate Session, Internal CGM22 processing]
+  CGM23 Processing:
+    Type: Compound
+    Components: [Generate Session, Internal CGM23 processing]
+  CGM24 Processing:
+    Type: Compound
+    Components: [Generate Session, Internal CGM24 processing]
+  CGM25 Processing:
+    Type: Compound
+    Components: [Generate Session, Internal CGM25 processing]
+  CGM26 Processing:
+    Type: Compound
+    Components: [Generate Session, Internal CGM26 processing]
+  Internal CGM1 processing:
+    Type: External program
+    Program display name: QTM_CGM1_workflow
+    Export session: No
+    Export measurements: c3d
+  Internal CGM11 processing:
+    Type: External program
+    Program display name: QTM_CGM11_workflow
+    Export session: No
+    Export measurements: c3d
+  Internal CGM21 processing:
+    Type: External program
+    Program display name: QTM_CGM21_workflow
+    Export session: No
+    Export measurements: c3d
+  Internal CGM22 processing:
+    Type: External program
+    Program display name: QTM_CGM22_workflow
+    Export session: No
+    Export measurements: c3d
+  Internal CGM23 processing:
+    Type: External program
+    Program display name: QTM_CGM23_workflow
+    Export session: No
+    Export measurements: c3d
+  Internal CGM24 processing:
+    Type: External program
+    Program display name: QTM_CGM24_workflow
+    Export session: No
+    Export measurements: c3d
+  Internal CGM25 processing:
+    Type: External program
+    Program display name: QTM_CGM25_workflow
+    Export session: No
+    Export measurements: c3d
+  Internal CGM26 processing:
+    Type: External program
+    Program display name: QTM_CGM26_workflow
+    Export session: No
+    Export measurements: c3d
   CGM2 Processing:
     Type: External program
     Program display name: Python
     Export session: No
     Export measurements: c3d
     Arguments: [$TemplateDirectory$Scripts\src\CGM2\CGM_workflow.py, --working-directory, $WorkingDirectory$]
-
+  
 Fields:
   Patient ID:
     Type: String
@@ -155,12 +219,6 @@ Fields:
     Values: ["CGM1.0", "CGM1.1", "CGM2.1-HJC", "CGM2.2-IK", "CGM2.3-skinClusters", "CGM2.4-ForeFoot", "CGM2.5-UpperLimb", "CGM2.6-Knee Calibration"]
     Default: "CGM2.3-skinClusters"
     Inherit: Copy
-  Solver accuracy:
-    Type: Float
-    Max: 0.001
-    Min: 0.000000000001
-    Default: 0.00001
-    Decimals: 12
   Event mode:
     Type: Enum
     Values: [Manual, Multiple forceplates, No forceplate (automatic), No forceplate (using template file), Single forceplate]
@@ -434,14 +492,14 @@ Fields:
     Inherit: Connect
   IkAccuracy:
     Type: Float
-    Decimals: 10
-    Default: 1e-5
+    Max: 0.001
+    Min: 0.000000000001
+    Default: 0.00001
+    Decimals: 12
   First frame to process:
     Type: String
-    Default:
   Last frame to process:
-      Type: String
-      Default:
+    Type: String
 
 
 Columns:
