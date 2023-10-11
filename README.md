@@ -8,4 +8,4 @@ This repository provides Qualisys CGM2 workflow using Project Automation Framewo
 
 # Installation
 
-For installation instructions see [https://pycgm2.netlify.app/code/](https://pycgm2.netlify.app/code/).
+For installation instructions see [https://pycgm2.netlify.app/nexusqualisys/](https://pycgm2.netlify.app/nexusqualisys/).
